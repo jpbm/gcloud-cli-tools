@@ -2,7 +2,7 @@
 - Using GCloud CLI for doing very basic things with the Google Compute Engine / VMs, such as listing, stopping, and starting them. 
 - Very simple and kinda hacky python scripts for doing said basic things.
 
-The proper things to do and use (in python) are discussed here: `https://github.com/googleapis/python-compute`. What's below is useful if you want to get on with things in under 2.5 minutes instead of in, like, under 10 minutes (4x speedup!). 
+The proper things to do and use (in python) are discussed [here](https://github.com/googleapis/python-compute). What's below is useful if you want to get on with things in under 2.5 minutes instead of in, like, under 10 minutes (4x speedup!). 
 
 ## Setup 
 ### 1. Install the Google Cloud SDK.
