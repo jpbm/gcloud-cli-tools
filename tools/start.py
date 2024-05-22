@@ -1,5 +1,5 @@
 import sys
-from ..src.util import list_instances, check_instance_exists, retry_command_until_success
+from src.util import list_instances, check_instance_exists, retry_command_until_success
 
 
 def start_instance(name):
