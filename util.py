@@ -25,6 +25,7 @@ def check_instance_exists(instances, name):
 
 
 def retry_command_until_success(name, command):
+    print(f"You may be prompted to enter your GCloud account password (same as email).")
     while True:
         try:
             _ = subprocess.run(
