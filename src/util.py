@@ -3,6 +3,7 @@ import sys
 import time
 import re
 
+
 def list_instances():
     """
     List all available Google Cloud instances using the gcloud command line tool.
@@ -11,7 +12,8 @@ def list_instances():
         str: A string representation of the list of instances.
 
     Raises:
-        subprocess.CalledProcessError: If there is an error during the gcloud command execution.
+        subprocess.CalledProcessError: If there is an error during the
+        gcloud command execution.
     """
     try:
         result = subprocess.run(
@@ -41,8 +43,8 @@ def check_instance_exists(instances, name):
     """
     if name not in instances:
         raise ValueError(f"No Instance {name} exists.")
-    
-    
+
+
 def get_instance_property(name, property):
     """
     Get a specific property of a Google Cloud instance.
@@ -55,17 +57,19 @@ def get_instance_property(name, property):
         str: The value of the specified property.
 
     Raises:
-        subprocess.CalledProcessError: If there is an error during the gcloud command execution.
+        subprocess.CalledProcessError: If there is an error during
+        the gcloud command execution.
     """
     result = subprocess.run(
-                    ["gcloud", "compute", "instances", "describe", name],
-                    capture_output=True,
-                    text=True,
-                    check=True,
+        ["gcloud", "compute", "instances", "describe", name],
+        capture_output=True,
+        text=True,
+        check=True,
     )
-    regex = f"(?<={property}:\s)([\d\.]+)"
+    regex = f"(?<={property}:\s)([\d\.]+)"  # noqa w605
     match = re.search(regex, result.stdout)
     return match.group(0)
+
 
 def get_instance_ip(name):
     """
@@ -77,12 +81,6 @@ def get_instance_ip(name):
     Returns:
         str: The external IP address of the instance.
     """
-    result = subprocess.run(
-                    ["gcloud", "compute", "instances", "describe", name],
-                    capture_output=True,
-                    text=True,
-                    check=True,
-    )
     return get_instance_property(name, "natIP")
 
 
@@ -100,7 +98,7 @@ def retry_command_until_success(name, command):
     Note:
         This function will prompt the user to enter their GCloud account password.
     """
-    print(f"You may be prompted to enter your GCloud account password (same as email).")
+    print("You may be prompted to enter your GCloud account password (same as email).")
     while True:
         try:
             _ = subprocess.run(
