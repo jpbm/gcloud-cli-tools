@@ -68,6 +68,11 @@ def get_instance_property(name, property):
     )
     regex = f"(?<={property}:\s)([\d\.]+)"  # noqa w605
     match = re.search(regex, result.stdout)
+    if match is None:
+        regex = r'((?<=^)|(?<=\n))([a-zA-Z][a-zA-Z0-9]*)(?=:)'
+        options = ", ".join([item[1] for item in re.findall(regex, result.stdout)])
+        raise ValueError(f"Property '{property}' not found in {name}. \
+                         \nKnown properties include (there may be others):\n{options}")
     return match.group(0)
 
 
